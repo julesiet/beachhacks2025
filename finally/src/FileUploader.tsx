@@ -25,26 +25,31 @@ const FileUploader: React.FC = () => {
   };
 
   // FUNCTION: literally flask handling i'm begging please pleas eplpealplpleap lpealsplpel PLEASE :'(
-  const uploadFilesToServer = async (files: File[]) => {
-    const formData = new FormData();
-    files.forEach((file) => {
-      formData.append("file", file);
-    });
-
-    try {
-      const response = await fetch("http://127.0.0.1:5000/upload", {
-        method: "POST",
-        body: formData,
+    const uploadFilesToServer = async (files: File[]) => {
+      const formData = new FormData();
+      files.forEach((file) => {
+        formData.append("file", file);
       });
-
-      const result = await response.json();
-      console.log("Server Response:", result);
-      alert(result.message);
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      alert("Failed to upload file.");
-    }
-  };
+    
+      try {
+        const response = await fetch("http://127.0.0.1:5000/extract_text/", {
+          method: "POST",
+          body: formData,
+        });
+    
+        const result = await response.json();
+        console.log("Server Response:", result);
+    
+        if (!response.ok) {
+          throw new Error(result.error || `HTTP Error: ${response.status}`);
+        }
+    
+        alert(`Extracted Text: ${result.text}`);
+      } catch (error) {
+        console.error("Error uploading file:", error);
+        alert("Failed to upload file. See console for details.");
+      }
+    };
 
   // FUNCTION: handle file selection in input field  
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
