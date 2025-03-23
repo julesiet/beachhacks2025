@@ -3,12 +3,11 @@ from google.genai import types
 import os
 from dotenv import load_dotenv
 import json
-
 load_dotenv()
-
 class ConsentGuardianGeminiService:
     def __init__(self, system_instructions_path: str):
-        gemini_api_key = os.getenv("GEMINI_API_KEY")
+        gemini_api_key = os.getenv("GEMINI_API_KEY") # ah yes... the correct spelling...
+
         if not gemini_api_key:
             raise ValueError("GEMINI_API_KEY environment variable is not set.")
         self.client = genai.Client(api_key=gemini_api_key)
@@ -45,10 +44,9 @@ if __name__ == "__main__":
     service = ConsentGuardianGeminiService("consentguardian_system_instructions.txt")
     
     chat = service.create_chat()
-    print("Chat session created: ", chat)
     
     user_keep_going = True
-    
+    # document_data = dat_file.function_example('file.file')
     while (user_keep_going):
         user_input = input("Enter a prompt (or type 'exit' to quit): ")
         if user_input.lower() in ["exit", "quit"]:

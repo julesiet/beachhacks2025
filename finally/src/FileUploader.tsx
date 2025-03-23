@@ -45,6 +45,7 @@ const FileUploader: React.FC = () => {
         }
     
         alert(`Extracted Text: ${result.text}`);
+        console.log(result.text)
       } catch (error) {
         console.error("Error uploading file:", error);
         alert("Failed to upload file. See console for details.");
