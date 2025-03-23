@@ -1,0 +1,50 @@
+@font-face {
+  font-family: DMSerifDisplay;
+  src: url("assets/fonts/DMSerifDisplay-Regular.ttf");
+}
+
+@font-face {
+  font-family: DMSansNorm;
+  src: url("assets/fonts/DMSans-VariableFont_opsz,wght.ttf");
+}
+
+@font-face {
+  font-family: DMSansItalic;
+  src: url("assets/fonts/DMSans-Italic-VariableFont_opsz,wght.ttf");
+}
+
+* {
+  background-color: #1E2C33;
+  color: #D6EAE9;
+}
+
+#titlename {
+  font-family: DMSerifDisplay;
+  font-weight: bold;
+  font-size: 80px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+#titledesc {
+  font-size: 25px;
+  font-weight: 250;
+  text-align: center;
+  font-family: DMSansNorm;
+  width: 800px;
+  margin-top: 5px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  flex-direction: column;
+}
+
+.undline {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}

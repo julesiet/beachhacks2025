@@ -1,0 +1,68 @@
+.file-uploader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    width: 50%;
+    max-width: 400px;
+    margin: 0 auto; 
+    border-radius: 20px;
+    font-family: DMSansNorm;
+    font-weight: 100px;
+  }
+  
+  .drop-zone {
+    width: 100%;
+    height: 180px;
+    border: 4px dashed #D6EAE9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    color: #ebf1e4;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .drop-zone p {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  .preview-container {
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+    justify-content: center;
+  }
+  
+  .preview-wrapper {
+    text-align: center;
+    width: 240px;
+  }
+  
+  .preview-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ebf1e4;
+    margin-top: 10px;
+  }
+  
+  .file-label {
+    font-size: 20px;
+    color: #D6EAE9;
+    word-wrap: break-word;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  @font-face {
+    font-family: DMSansNorm;
+    src: url('/finally/src/assets/fonts/DMSans-VariableFont_opsz,wght.ttf');
+  }
+  
