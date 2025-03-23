@@ -1,6 +1,9 @@
 from google import genai
 from google.genai import types
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class ConsentGuardianGeminiService:
     def __init__(self, system_instructions_path: str):
@@ -24,9 +27,38 @@ class ConsentGuardianGeminiService:
                 system_instruction=self.system_instructions
             )
         )
+        return chat
 
+    def upload_file(self, file_path: str):
+        '''
+        Uploads a file (example: patient consent form) to Gemini.
+        Returns the file name as stored by the service.
+        '''
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"File not found: {file_path}")
+        uploaded_file = self.client.files.upload(file=file_path)
+        return uploaded_file.name
     
+    
+if __name__ == "__main__":
+    service = ConsentGuardianGeminiService("consentguardian_system_instructions.txt")
+    
+    chat = service.create_chat()
+    print("Chat session created: ", chat)
+    
+    file_name = service.upload_file("consent_form.pdf")
+    print("Uploaded file name: ", file_name)
 
+    user_keep_going = True
+    
+    while (user_keep_going):
+        user_input = input("Enter a prompt (or type 'exit' to quit): ")
+        if user_input.lower() in ["exit", "quit"]:
+            user_keep_going = False
+            break
 
-    def upload_file(user_uploaded_pdf):
-        user_proccessed_digital_file = client.files.upload(file=media / "")
+        response = chat.send_message_stream(user_input)
+        for chunk in response:
+            print(chunk.text, end="")
+
+        
