@@ -2,6 +2,7 @@ from google import genai
 from google.genai import types
 import os
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 
@@ -46,9 +47,6 @@ if __name__ == "__main__":
     chat = service.create_chat()
     print("Chat session created: ", chat)
     
-    file_name = service.upload_file("consent_form.pdf")
-    print("Uploaded file name: ", file_name)
-
     user_keep_going = True
     
     while (user_keep_going):
@@ -59,6 +57,13 @@ if __name__ == "__main__":
 
         response = chat.send_message_stream(user_input)
         for chunk in response:
-            print(chunk.text, end="")
+            try:
+                print(chunk.text, end="")
+            except json.JSONDecodeError as e:
+                print("\nWarning: Could not decode a response chunk. Skipping this chunk.")
+
+        print()
+
+    print(chat.get_history())
 
         
