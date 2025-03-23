@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Text Extractor</title>
+</head>
+<body>
+    <h2>Upload an Image for Text Extraction</h2>
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" id="file-input" name="file" accept="image/*" required>
+        <button type="button" onclick="uploadFile()">Extract Text</button>
+    </form>
+    <h3>Extracted Text:</h3>
+    <p id="result"></p>
+
+    <script>
+        function uploadFile() {
+            let formData = new FormData();
+            let fileInput = document.getElementById("file-input");
+            formData.append("file", fileInput.files[0]);
+
+            fetch("http://127.0.0.1:5000/extract_text/", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Server Response:", data);  // Debugging
+                document.getElementById("result").textContent = data.text || "Error: " + data.error;
+            })
+            .catch(error => console.error("Fetch Error:", error));
+        }
+    </script>
+
+
+</body>
+</html>
