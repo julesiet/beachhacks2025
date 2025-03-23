@@ -9,7 +9,7 @@
 </div>
 
 Consent Guardian is a web application that interprets and translates images of consent forms into simpler, easier to understand language for patients of all ages. 
-> built with ReactJS, Flask, and Gemini AI
+> Built with ReactJS, Flask, and Gemini AI
 
 ---
 ## Prerequisites
