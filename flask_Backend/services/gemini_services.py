@@ -54,8 +54,9 @@ if __name__ == "__main__":
         if user_input.lower() in ["exit", "quit"]:
             user_keep_going = False
             break
-
+        
         response = chat.send_message_stream(user_input)
+        
         for chunk in response:
             try:
                 print(chunk.text, end="")
@@ -64,6 +65,5 @@ if __name__ == "__main__":
 
         print()
 
-    print(chat.get_history())
 
         
