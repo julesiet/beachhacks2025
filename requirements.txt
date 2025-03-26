@@ -1,0 +1,7 @@
+flask
+flask-cors
+python-dotenv
+pytesseract
+Pillow
+PyPDF2
+google-generativeai
