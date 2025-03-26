@@ -38,8 +38,7 @@ pip install -r requirements.txt
 ## Setup
 Clone the repository
 ```sh
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+gh repo clone julesiet/consent-guardian
 ```
 Create a virtual environment (recommended)
 ```sh
